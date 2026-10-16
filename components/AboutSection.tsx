@@ -27,10 +27,10 @@ export default function AboutSection() {
         <div className="flex flex-col items-center md:items-center text-center flex-1 space-y-6">
           <div>
             <span className="text-[10px] font-bold tracking-[0.25em] text-slate-500 uppercase">
-              OUR STORY &amp; VISION
+              MY STORY &amp; VISION
             </span>
             <h2 className="font-display text-3xl md:text-4xl font-medium tracking-tight text-slate-900 mt-2">
-              Why I Built The Christy Black Art Gallery
+              A Little About Me
             </h2>
           </div>
 
