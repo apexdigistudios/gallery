@@ -1,7 +1,5 @@
 'use client';
 
-import Image from 'next/image';
-
 interface Exhibition {
   id: number;
   title: string;
@@ -32,8 +30,23 @@ const exhibitions: Exhibition[] = [
 
 export default function ExhibitionShowcase() {
   return (
-    <section id="exhibitions" data-reveal className="reveal-section mb-12 md:mb-20">
-      <div className="mb-10 flex flex-col items-center text-center">
+    <section id="exhibitions" className="mb-12 md:mb-20 overflow-hidden">
+      <style>{`
+        @keyframes marqueeScroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .marquee-track {
+          display: flex;
+          width: max-content;
+          animation: marqueeScroll 35s linear infinite;
+        }
+        .marquee-track:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+
+      <div className="mb-10 flex flex-col items-center text-center px-4">
         <span className="mb-4 rounded-full px-4 py-1.5 text-[10px] font-bold tracking-[0.25em] text-slate-700 bg-white border border-black/10 shadow-xs">
           EXPLORE THE SPACE
         </span>
@@ -45,44 +58,61 @@ export default function ExhibitionShowcase() {
         </p>
       </div>
 
-      {/* Horizontal scroll gallery */}
-      <div className="no-scrollbar -mx-6 flex gap-5 overflow-x-auto px-6 pb-4 md:gap-6">
-        {exhibitions.map((ex, index) => (
-          <div
-            key={ex.id}
-            data-reveal
-            className="reveal-card group relative shrink-0 cursor-pointer overflow-hidden rounded-4xl transition-all duration-500 hover:scale-[1.02] md:w-105 shadow-xl bg-slate-900 border border-black/10"
-            style={{ ['--delay' as string]: `${index * 90}ms` }}
-          >
-            {/* Full Image Display */}
-            <div className="relative h-96 w-full overflow-hidden md:h-104">
-              <Image
-                src={ex.image}
-                alt={ex.title}
-                width={1200}
-                height={1400}
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              
-              {/* Bottom Shading Overlay for Text */}
-              <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent" />
-
-              {/* OPEN NOW badge */}
-              <div className="absolute right-4 top-4 z-10">
-                <div className="flex items-center gap-2 rounded-full px-3.5 py-1.5 bg-black/75 border border-white/20 shadow-md backdrop-blur-md">
-                  <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" />
-                  <span className="text-[10px] font-bold tracking-wider text-white">
-                    OPEN NOW
+      {/* MOBILE VIEW: Infinite Slow Marquee Effect */}
+      <div className="block md:hidden w-full overflow-hidden py-2">
+        <div className="marquee-track gap-4 px-2">
+          {/* Render exhibitions twice to create seamless loop effect */}
+          {[...exhibitions, ...exhibitions].map((ex, index) => (
+            <div
+              key={`${ex.id}-${index}`}
+              className="group relative shrink-0 cursor-pointer overflow-hidden rounded-4xl w-72 shadow-xl bg-slate-900 border border-black/10"
+            >
+              <div className="relative h-72 w-full overflow-hidden">
+                <img
+                  src={ex.image}
+                  alt={ex.title}
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-5 z-10">
+                  <span className="text-[9px] font-bold tracking-[0.3em] text-amber-300 uppercase">
+                    {ex.floor}
                   </span>
+                  <h3 
+                    className="font-display mt-1 text-xl font-medium leading-tight drop-shadow-md"
+                    style={{ color: '#ffffff' }}
+                  >
+                    {ex.title}
+                  </h3>
                 </div>
               </div>
+            </div>
+          ))}
+        </div>
+      </div>
 
-              {/* Content overlay */}
+      {/* DESKTOP VIEW: Clean Interactive Row */}
+      <div className="hidden md:flex justify-center gap-6 px-6">
+        {exhibitions.map((ex) => (
+          <div
+            key={ex.id}
+            className="group relative shrink-0 cursor-pointer overflow-hidden rounded-4xl transition-all duration-500 hover:scale-[1.02] w-92 shadow-xl bg-slate-900 border border-black/10"
+          >
+            <div className="relative h-92 w-full overflow-hidden">
+              <img
+                src={ex.image}
+                alt={ex.title}
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-6 z-10">
                 <span className="text-[10px] font-bold tracking-[0.3em] text-amber-300 uppercase">
                   {ex.floor}
                 </span>
-                <h3 className="font-display mt-1.5 text-2xl font-medium leading-tight text-white md:text-3xl drop-shadow-md">
+                <h3 
+                  className="font-display mt-1.5 text-2xl font-medium leading-tight drop-shadow-md"
+                  style={{ color: '#ffffff' }}
+                >
                   {ex.title}
                 </h3>
               </div>

@@ -36,7 +36,12 @@ export default function InfoTiles() {
               </span>
             </div>
             <div className="absolute bottom-4 left-4 right-4">
-              <h3 className="font-display text-lg font-semibold text-white">Virtual Gallery Tour</h3>
+              <h3 
+                className="font-display text-lg font-semibold drop-shadow-md"
+                style={{ color: '#ffffff' }}
+              >
+                Virtual Gallery Tour
+              </h3>
             </div>
           </div>
 
@@ -76,7 +81,12 @@ export default function InfoTiles() {
               </span>
             </div>
             <div className="absolute bottom-4 left-4 right-4">
-              <h3 className="font-display text-lg font-semibold text-white">Purchase Consultation</h3>
+              <h3 
+                className="font-display text-lg font-semibold drop-shadow-md"
+                style={{ color: '#ffffff' }}
+              >
+                Purchase Consultation
+              </h3>
             </div>
           </div>
 
@@ -116,7 +126,12 @@ export default function InfoTiles() {
               </span>
             </div>
             <div className="absolute bottom-4 left-4 right-4">
-              <h3 className="font-display text-lg font-semibold text-white">Opening Hours</h3>
+              <h3 
+                className="font-display text-lg font-semibold drop-shadow-md"
+                style={{ color: '#ffffff' }}
+              >
+                Opening Hours
+              </h3>
             </div>
           </div>
 
