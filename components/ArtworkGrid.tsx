@@ -207,7 +207,7 @@ export default function ArtworkGrid() {
 
   return (
     <section id="artworks" className="mb-16 md:mb-24">
-      <div className="mb-10 flex flex-col items-center text-center">
+      <div className="mb-10 flex flex-col items-center text-center px-4">
         <span className="mb-4 rounded-full px-4 py-1.5 text-[10px] font-bold tracking-[0.25em] text-slate-700 bg-white border border-black/10 shadow-xs uppercase">
           Art Categories
         </span>
@@ -219,9 +219,9 @@ export default function ArtworkGrid() {
         </p>
       </div>
 
-      {/* Category Navigation Tabs */}
-      <div className="mb-10 flex justify-center overflow-x-auto no-scrollbar px-4">
-        <div className="inline-flex items-center gap-1.5 rounded-full p-1.5 bg-white/90 border border-black/10 shadow-md">
+      {/* Category Navigation Tabs - Fully visible & wrapping on mobile */}
+      <div className="mb-10 px-4">
+        <div className="max-w-3xl mx-auto flex flex-wrap justify-center items-center gap-2 rounded-3xl p-2 bg-white/90 border border-black/10 shadow-md backdrop-blur-md">
           {categories.map((cat, idx) => (
             <button
               key={cat.name}
@@ -229,7 +229,7 @@ export default function ArtworkGrid() {
                 setActiveCategoryIndex(idx);
                 setMobileItemIndex(0);
               }}
-              className={`rounded-full px-5 py-2.5 text-xs font-semibold transition-all whitespace-nowrap ${
+              className={`rounded-full px-4 py-2 text-[11px] md:text-xs font-semibold transition-all cursor-pointer ${
                 activeCategoryIndex === idx
                   ? 'bg-slate-900 text-white shadow-sm'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-black/5'
@@ -343,7 +343,7 @@ export default function ArtworkGrid() {
             </div>
 
             {/* Prominent Global Category CTA */}
-            <div className="mt-10 flex flex-col items-center justify-center text-center">
+            <div className="mt-10 flex flex-col items-center justify-center text-center px-4">
               <a
                 href={`/categories/${currentCategoryObj.slug}`}
                 className="group inline-flex items-center gap-3 rounded-full bg-slate-900 px-8 py-4 text-xs font-bold tracking-widest text-white shadow-xl hover:bg-slate-800 hover:scale-105 transition-all uppercase"
@@ -351,7 +351,7 @@ export default function ArtworkGrid() {
                 <span>Explore Full {currentCategoryObj.name} Collection</span>
                 <span className="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
               </a>
-              <span className="mt-2.5 text-[11px] text-slate-500">
+              <span className="mt-2.5 text-[11px] text-slate-500 max-w-sm">
                 Click to view all masterworks, details, and private acquisition inquiries for {currentCategoryObj.name.toLowerCase()}.
               </span>
             </div>
