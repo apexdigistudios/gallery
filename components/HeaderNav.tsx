@@ -105,25 +105,25 @@ export const HeaderNav: React.FC = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'glass-nav border-b border-black/10 shadow-lg backdrop-blur-2xl bg-white/80'
-            : 'bg-linear-to-b from-white/90 via-white/50 to-transparent border-b border-transparent'
+            ? 'glass-nav border-b border-black/10 shadow-lg backdrop-blur-2xl bg-white/90'
+            : 'bg-linear-to-b from-white/95 via-white/60 to-transparent border-b border-transparent'
         }`}
       >
-        <nav className="w-full max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <nav className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-3.5 sm:py-4 flex items-center justify-between">
           {/* Brand / Logo */}
-          <Link href="/" className="flex items-center gap-3.5 group">
-            <div className="flex items-center justify-center">
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="flex items-center justify-center shrink-0">
               <Image
                 src="/logo.png"
                 alt="The Christy Black Art Gallery Logo"
-                width={48}
-                height={48}
-                className="h-12 w-12 object-contain drop-shadow-xs transition-transform group-hover:scale-105"
+                width={40}
+                height={40}
+                className="h-10 w-10 sm:h-12 sm:w-12 object-contain drop-shadow-xs transition-transform group-hover:scale-105"
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-sm font-semibold tracking-wide text-slate-900">Christy Black Art</span>
-              <span className="text-[10px] text-slate-500 tracking-widest uppercase">Accra • Katamanso</span>
+              <span className="text-xs sm:text-sm font-bold tracking-wide text-slate-900 leading-tight">Christy Black Art</span>
+              <span className="text-[9px] sm:text-[10px] text-slate-500 tracking-widest uppercase">Accra • Katamanso</span>
             </div>
           </Link>
 
@@ -132,6 +132,7 @@ export const HeaderNav: React.FC = () => {
             {/* Artworks Dropdown Menu */}
             <div className="relative" ref={dropdownRef}>
               <button
+                type="button"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className="flex items-center gap-1.5 hover:text-slate-900 transition-colors py-2 focus:outline-none cursor-pointer"
               >
@@ -149,7 +150,7 @@ export const HeaderNav: React.FC = () => {
 
               {/* Nested Menu Dropdown */}
               {dropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 w-60 rounded-2xl bg-white/95 border border-black/10 shadow-xl py-2 z-50 animate-float-up backdrop-blur-xl">
+                <div className="absolute top-full left-0 mt-2 w-60 rounded-2xl bg-white/95 border border-black/10 shadow-xl py-2 z-50 backdrop-blur-xl">
                   <div className="px-4 py-2 border-b border-black/5 mb-1">
                     <span className="text-[9px] font-bold tracking-[0.2em] text-slate-400 uppercase">
                       Curated Collections
@@ -162,7 +163,7 @@ export const HeaderNav: React.FC = () => {
                       onClick={() => setDropdownOpen(false)}
                       className="flex items-center gap-3 px-4 py-2.5 text-xs font-medium text-slate-700 hover:bg-slate-100/70 hover:text-slate-900 transition-colors tracking-normal normal-case"
                     >
-                      <div className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-100 border border-black/5">
+                      <div className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-100 border border-black/5 shrink-0">
                         {cat.icon}
                       </div>
                       <span className="font-semibold text-slate-800">{cat.name}</span>
@@ -178,16 +179,17 @@ export const HeaderNav: React.FC = () => {
           </div>
 
           {/* Desktop Action CTA & Mobile Hamburger */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <a
               href="#contact"
-              className="hidden md:inline-flex glass-pill-light px-5 py-2.5 text-xs font-semibold tracking-wide rounded-full text-white bg-slate-900 transition-all hover:scale-105 shadow-sm"
+              className="hidden md:inline-flex px-5 py-2.5 text-xs font-semibold tracking-wide rounded-full text-white bg-slate-900 transition-all hover:scale-105 shadow-sm"
             >
               Private Viewing
             </a>
 
             {/* Hamburger Button */}
             <button
+              type="button"
               onClick={() => setMobileMenuOpen(true)}
               className="md:hidden flex items-center justify-center p-2 rounded-xl text-slate-800 hover:bg-slate-100 transition-colors focus:outline-none cursor-pointer"
               aria-label="Open mobile menu"
@@ -219,18 +221,19 @@ export const HeaderNav: React.FC = () => {
           }`}
         >
           {/* Mobile Menu Header */}
-          <div className="flex items-center justify-between px-6 py-5 border-b border-black/10">
-            <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between px-5 py-4 border-b border-black/10">
+            <div className="flex items-center gap-2.5">
               <Image
                 src="/logo.png"
                 alt="Logo"
-                width={36}
-                height={36}
-                className="h-9 w-9 object-contain"
+                width={32}
+                height={32}
+                className="h-8 w-8 object-contain"
               />
               <span className="text-xs font-bold uppercase tracking-widest text-slate-900">Menu</span>
             </div>
             <button
+              type="button"
               onClick={() => setMobileMenuOpen(false)}
               className="p-2 rounded-full text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
               aria-label="Close menu"
@@ -242,12 +245,13 @@ export const HeaderNav: React.FC = () => {
           </div>
 
           {/* Mobile Menu Links */}
-          <div className="flex-1 overflow-y-auto px-6 py-6 space-y-4">
+          <div className="flex-1 overflow-y-auto px-5 py-6 space-y-4">
             {/* Artworks Accordion */}
             <div>
               <button
+                type="button"
                 onClick={() => setMobileArtworksOpen(!mobileArtworksOpen)}
-                className="flex items-center justify-between w-full py-2 text-sm font-semibold tracking-wider uppercase text-slate-800 cursor-pointer"
+                className="flex items-center justify-between w-full py-2 text-xs font-bold tracking-wider uppercase text-slate-900 cursor-pointer"
               >
                 <span>Artworks</span>
                 <svg
@@ -273,7 +277,7 @@ export const HeaderNav: React.FC = () => {
                       }}
                       className="flex items-center gap-3 py-2 text-xs font-medium text-slate-600 hover:text-slate-900 transition-colors"
                     >
-                      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-100">
+                      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 shrink-0">
                         {cat.icon}
                       </div>
                       <span>{cat.name}</span>
@@ -286,28 +290,28 @@ export const HeaderNav: React.FC = () => {
             <a
               href="#exhibitions"
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 text-sm font-semibold tracking-wider uppercase text-slate-800 hover:text-slate-950 transition-colors"
+              className="block py-2 text-xs font-bold tracking-wider uppercase text-slate-900 hover:text-slate-950 transition-colors"
             >
               Exhibitions
             </a>
             <a
               href="#about"
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 text-sm font-semibold tracking-wider uppercase text-slate-800 hover:text-slate-950 transition-colors"
+              className="block py-2 text-xs font-bold tracking-wider uppercase text-slate-900 hover:text-slate-950 transition-colors"
             >
               About
             </a>
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 text-sm font-semibold tracking-wider uppercase text-slate-800 hover:text-slate-950 transition-colors"
+              className="block py-2 text-xs font-bold tracking-wider uppercase text-slate-900 hover:text-slate-950 transition-colors"
             >
               Contact
             </a>
           </div>
 
           {/* Mobile Menu Footer CTA */}
-          <div className="p-6 border-t border-black/10 bg-slate-50">
+          <div className="p-5 border-t border-black/10 bg-slate-50">
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}

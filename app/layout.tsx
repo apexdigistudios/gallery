@@ -9,12 +9,12 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "The Christy Black Art Gallery | Accra SH",
+  title: "Christy Black Art Gallery",
   description: "Exquisite contemporary art, exhibitions, and private viewings curated in Katamanso, Tema.",
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png",
+    icon: "/art-logo.png",
+    shortcut: "/art-logo.png",
+    apple: "/art-logo.png",
   },
 };
 
